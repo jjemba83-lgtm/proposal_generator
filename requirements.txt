@@ -1,7 +1,6 @@
 pymupdf
 easyocr
 Pillow
-opencv-python
 opencv-python-headless
 numpy
 pydantic
@@ -10,3 +9,4 @@ instructor
 python-dotenv
 reportlab
 streamlit
+
