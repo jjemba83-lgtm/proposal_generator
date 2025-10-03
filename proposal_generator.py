@@ -194,7 +194,7 @@ def main():
         result = create_proposal(uploaded_file, pdf_buffer)  # your data for PDF
         #doc.build(result)
         pdf_buffer.seek(0)
-        st.pdf(pdf_buffer)
+        #st.pdf(pdf_buffer) #Not workign on the cloud for some reason
         # Flag that PDF is ready
         pdf_ready = True
     else:
