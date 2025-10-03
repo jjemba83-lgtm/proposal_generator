@@ -93,7 +93,7 @@ def create_proposal(file, buffer, percentage):
     prompt = """
     Summarize the following statement of work.  Please respond only with a valid JSON object using the following exact fields:
     - subject (string): A concise description of the work.
-    - tasks (string): Extract and bulletize the work that will be done.   You MUST seperate each bulletpoint with |  
+    - tasks (string): Extract the details of each task that will be done.   You MUST seperate each task with |.  
     - total_cost (float): Provide the total cost. 
     Return the output as valid JSON in the specified schema.  
     """
