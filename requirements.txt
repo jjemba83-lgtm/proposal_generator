@@ -1,0 +1,11 @@
+pymupdf
+easyocr
+Pillow
+opencv-python
+numpy
+pydantic
+openai
+instructor
+python-dotenv
+reportlab
+streamlit
