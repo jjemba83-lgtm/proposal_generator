@@ -72,7 +72,7 @@ def ocr_images_with_easyocr(image_list):
 
 
 
-def create_proposal(file, buffer):
+def create_proposal(file, buffer, percentage):
 
     # Extract images
     images = extract_images_from_pdf(file)
@@ -113,7 +113,7 @@ def create_proposal(file, buffer):
     task_list = [part for part in tasks.split('|')]
     total_cost = fields[2]
     mark_up = 1.07
-    total_cost = round( total_cost * mark_up, 2)
+    total_cost = round( total_cost * (percentage + 1), 2)
 
     styles = getSampleStyleSheet()
     styleN = styles['Normal']
@@ -183,6 +183,7 @@ def create_proposal(file, buffer):
 #run the code
 def main():
     st.title("Proposal Generator")
+    markup = st.number_input("Insert a markup:", value = 0)
     uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
     #if uploaded_file is not None:
         #pdf_bytes = uploaded_file.read()
@@ -191,7 +192,7 @@ def main():
         # Your PDF generation code
         pdf_buffer = BytesIO()
         #doc = SimpleDocTemplate(pdf_buffer)
-        result = create_proposal(uploaded_file, pdf_buffer)  # your data for PDF
+        result = create_proposal(uploaded_file, pdf_buffer, markup)  # your data for PDF
         #doc.build(result)
         pdf_buffer.seek(0)
         #st.pdf(pdf_buffer) #Not workign on the cloud for some reason
