@@ -124,7 +124,8 @@ def create_proposal(file, buffer):
         canvas.saveState()
         # Draw logo
         canvas.drawImage(
-            'iet_logo_only.jpg', 72, doc.height + doc.topMargin - 60, width = scale * logo_size, height= logo_size
+            'https://github.com/jjemba83-lgtm/proposal_generator/blob/main/iet_logo_only.JPG?raw=true',
+            72, doc.height + doc.topMargin - 60, width = scale * logo_size, height= logo_size
         )
     
         # Organization Name and Address
