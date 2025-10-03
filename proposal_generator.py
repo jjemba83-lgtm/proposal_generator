@@ -154,7 +154,7 @@ def create_proposal(file, buffer):
     story.append(Spacer(1, 0.1 * inch))
     story.append(Paragraph(f"RE: {subject}", styleN))
     story.append(Spacer(1, 0.1 * inch))
-    story.append(Paragraph("Dear Recipient,<br/><br/>In response to your request, Industrial Electric & Testing is pleased to submit the following: ", styleN))
+    story.append(Paragraph("Dear {recipient_name},<br/><br/>In response to your request, Industrial Electric & Testing is pleased to submit the following: ", styleN))
     story.append(Spacer(1, 0.1 * inch))
     story.append(Paragraph(f"Scope:"))
     # Create Paragraphs and ListItems in a loop
