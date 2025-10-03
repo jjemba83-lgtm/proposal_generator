@@ -183,7 +183,7 @@ def create_proposal(file, buffer, percentage):
 #run the code
 def main():
     st.title("Proposal Generator")
-    markup = st.number_input("Insert a markup:", value = 0)
+    markup = st.number_input("Insert a markup:", value = 0.0)
     uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
     #if uploaded_file is not None:
         #pdf_bytes = uploaded_file.read()
