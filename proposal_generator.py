@@ -158,7 +158,7 @@ def create_proposal(file, buffer, percentage, project):
     current_date = datetime.now().strftime("%B %d, %Y")
     recipient_name = 'Susan Gustafson'
     recipient_org = 'Lumen Vyrex Operations'
-    recipient_email = susan.gustafson@lumen.com
+    recipient_email = 'susan.gustafson@lumen.com'
     recipient_address = '100 S. Cincinnati Ave, Suite 1200 <br/> Tulsa OK'
 
     story = []
