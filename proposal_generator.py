@@ -127,7 +127,7 @@ def create_proposal(file, buffer, percentage, project):
         'LargeTitle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=24,  # Specify the font size here
+        fontSize=18,  # Specify the font size here
         leading=50,   # Adjust leading for large fonts
         alignment=1   # Center alignment (0=left, 1=center, 2=right)
     )
@@ -164,7 +164,7 @@ def create_proposal(file, buffer, percentage, project):
     story = []
     story.append(Spacer(1, .2 * inch))
     story.append(Paragraph("PROPOSAL", title_style))
-    story.append(Spacer(1, .2 * inch))
+    story.append(Spacer(1, .1 * inch))
     story.append(Paragraph(f"Date: {current_date}", styleN))
     story.append(Paragraph(f"Quotation #: {pn}", right_aligned_style))
     story.append(Spacer(1, 0.1 * inch))
