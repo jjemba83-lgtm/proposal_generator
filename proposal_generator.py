@@ -18,6 +18,7 @@ from dotenv import load_dotenv
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import BaseDocTemplate, Frame, PageTemplate, Paragraph, Spacer, ListItem, ListFlowable, SimpleDocTemplate
 from reportlab.lib.units import inch, cm
+from reportlab.lib.enums import TA_RIGHT
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from datetime import datetime
 import streamlit as st
