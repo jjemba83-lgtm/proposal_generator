@@ -72,7 +72,7 @@ def ocr_images_with_easyocr(image_list):
 
 
 
-def create_proposal(file, buffer, percentage):
+def create_proposal(file, buffer, percentage, project):
 
     # Extract images
     images = extract_images_from_pdf(file)
@@ -117,7 +117,20 @@ def create_proposal(file, buffer, percentage):
 
     styles = getSampleStyleSheet()
     styleN = styles['Normal']
-    
+    right_aligned_style = ParagraphStyle(
+        name='RightAligned',
+        parent=styleN,
+        alignment=TA_RIGHT
+    )
+    title_style = ParagraphStyle(
+        'LargeTitle',
+        parent=styles['Normal'],
+        fontName='Helvetica-Bold',
+        fontSize=48,  # Specify the font size here
+        leading=50,   # Adjust leading for large fonts
+        alignment=1   # Center alignment (0=left, 1=center, 2=right)
+    )
+
     def letterhead(canvas, doc):
         scale = .9
         logo_size = 80
@@ -140,17 +153,21 @@ def create_proposal(file, buffer, percentage):
     frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height - 1*inch, id='normal')
     template = PageTemplate(id='letterhead', frames=frame, onPage=letterhead)
     doc.addPageTemplates([template])
-
+    pn = project 
     current_date = datetime.now().strftime("%B %d, %Y")
     recipient_name = 'Susan Gustafson'
     recipient_org = 'Lumen Vyrex Operations'
+    recipient_email = susan.gustafson@lumen.com
     recipient_address = '100 S. Cincinnati Ave, Suite 1200 <br/> Tulsa OK'
 
     story = []
-    story.append(Spacer(1, .25 * inch))
+    story.append(Spacer(1, .2 * inch))
+    story.append(Paragraph("PROPOSAL", title_style))
+    story.append(Spacer(1, .2 * inch))
     story.append(Paragraph(f"Date: {current_date}", styleN))
+    story.append(Paragraph(f"Quotation #: {pn}"), right_alighned_style))
     story.append(Spacer(1, 0.1 * inch))
-    story.append(Paragraph(f"{recipient_name}<br/>{recipient_org}<br/>{recipient_address}", styleN))
+    story.append(Paragraph(f"{recipient_name}<br/>{recipient_org}<br/>{recipient_address}<br/>{recipient_email}", styleN))
     story.append(Spacer(1, 0.1 * inch))
     story.append(Paragraph(f"RE: {subject}", styleN))
     story.append(Spacer(1, 0.1 * inch))
@@ -173,6 +190,8 @@ def create_proposal(file, buffer, percentage):
     story.append(Paragraph(f"Price: {total_cost}", styleN))
     story.append(Spacer(1, 0.5 * inch))
     story.append(Paragraph("This quote does not include any additional charges for taxes, fees, or permits.<br/>Industrial Electric & Testing Co. appreciates the opportunity to serve you. If you have any question concerning this quotation, please feel free to call me at (918) 592-6560.", styleN))   
+    story.append(Spacer(1, 0.5 * inch))
+    story.append(Paragraph("Sincerely", styleN))
     doc.build(story)
     return doc
 
@@ -183,6 +202,7 @@ def create_proposal(file, buffer, percentage):
 #run the code
 def main():
     st.title("Proposal Generator")
+    project_number = st.text_input("Enter project number", value = "9009-")
     markup = st.number_input("Insert a markup:", value = 0.0)
     uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
     #if uploaded_file is not None:
@@ -192,7 +212,7 @@ def main():
         # Your PDF generation code
         pdf_buffer = BytesIO()
         #doc = SimpleDocTemplate(pdf_buffer)
-        result = create_proposal(uploaded_file, pdf_buffer, markup)  # your data for PDF
+        result = create_proposal(uploaded_file, pdf_buffer, markup, project_number)  # your data for PDF
         #doc.build(result)
         pdf_buffer.seek(0)
         #st.pdf(pdf_buffer) #Not workign on the cloud for some reason
