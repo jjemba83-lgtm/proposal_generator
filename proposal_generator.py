@@ -126,8 +126,8 @@ def create_proposal(file, buffer, percentage, project):
     title_style = ParagraphStyle(
         'LargeTitle',
         parent=styles['Normal'],
-        fontName='Helvetica-Bold',
-        fontSize=18,  # Specify the font size here
+        fontName='Times-Bold',
+        fontSize=14,  # Specify the font size here
         leading=50,   # Adjust leading for large fonts
         alignment=1   # Center alignment (0=left, 1=center, 2=right)
     )
@@ -189,7 +189,7 @@ def create_proposal(file, buffer, percentage, project):
     )
     story.append(bulleted_list)
     story.append(Spacer(1, 0.1 * inch))
-    story.append(Paragraph(f"<b>Price:</b> <b><u>{total_cost}</b></u>", styleN))
+    story.append(Paragraph(f"<b>Price: <u>{total_cost}</u></b>", styleN))
     story.append(Spacer(1, 0.5 * inch))
     story.append(Paragraph("This quote does not include any additional charges for taxes, fees, or permits.<br/>Industrial Electric & Testing Co. appreciates the opportunity to serve you. If you have any question concerning this quotation, please feel free to call me at (918) 592-6560.", styleN))   
     story.append(Spacer(1, 0.5 * inch))
