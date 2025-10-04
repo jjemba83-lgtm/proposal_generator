@@ -166,7 +166,7 @@ def create_proposal(file, buffer, percentage, project):
     story.append(Paragraph("PROPOSAL", title_style))
     story.append(Spacer(1, .2 * inch))
     story.append(Paragraph(f"Date: {current_date}", styleN))
-    story.append(Paragraph(f"Quotation #: {pn}"), right_aligned_style)
+    story.append(Paragraph(f"Quotation #: {pn}", right_aligned_style))
     story.append(Spacer(1, 0.1 * inch))
     story.append(Paragraph(f"{recipient_name}<br/>{recipient_org}<br/>{recipient_address}<br/>{recipient_email}", styleN))
     story.append(Spacer(1, 0.1 * inch))
