@@ -166,7 +166,7 @@ def create_proposal(file, buffer, percentage, project):
     story.append(Paragraph("PROPOSAL", title_style))
     story.append(Spacer(1, .1 * inch))
     story.append(Paragraph(f"Date: {current_date}", styleN))
-    story.append(Paragraph(f"Quotation #: {pn}", right_aligned_style))
+    story.append(Paragraph(f"Quotation #: <u>{pn}</u>", right_aligned_style))
     story.append(Spacer(1, 0.1 * inch))
     story.append(Paragraph(f"{recipient_name}<br/>{recipient_org}<br/>{recipient_address}<br/>{recipient_email}", styleN))
     story.append(Spacer(1, 0.1 * inch))
@@ -188,7 +188,8 @@ def create_proposal(file, buffer, percentage, project):
         leftIndent=20  # Adjust to indent whole list block
     )
     story.append(bulleted_list)
-    story.append(Paragraph(f"Price: {total_cost}", styleN))
+    story.append(Spacer(1, 0.1 * inch))
+    story.append(Paragraph(f"<b>Price:</b> <b><u>{total_cost}</b></u>", styleN))
     story.append(Spacer(1, 0.5 * inch))
     story.append(Paragraph("This quote does not include any additional charges for taxes, fees, or permits.<br/>Industrial Electric & Testing Co. appreciates the opportunity to serve you. If you have any question concerning this quotation, please feel free to call me at (918) 592-6560.", styleN))   
     story.append(Spacer(1, 0.5 * inch))
