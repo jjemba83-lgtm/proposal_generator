@@ -127,7 +127,7 @@ def create_proposal(file, buffer, percentage, project):
         'LargeTitle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=48,  # Specify the font size here
+        fontSize=24,  # Specify the font size here
         leading=50,   # Adjust leading for large fonts
         alignment=1   # Center alignment (0=left, 1=center, 2=right)
     )
