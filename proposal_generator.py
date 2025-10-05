@@ -210,7 +210,7 @@ def create_proposal(file, buffer, percentage, project):
     story.append(Paragraph("This quote does not include any additional charges for taxes, fees, or permits.<br/>Industrial Electric & Testing Co. appreciates the opportunity to serve you. If you have any question concerning this quotation, please feel free to call me at (918) 592-6560.", styleN))   
     story.append(Spacer(1, 0.5 * inch))
     story.append(Paragraph("Sincerely", styleN))
-    story.append(Paragraph("John M. Prakash, signature_style))
+    story.append(Paragraph("John M. Prakash", signature_style))
     doc.build(story)
     return doc
 
