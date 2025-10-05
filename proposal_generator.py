@@ -120,7 +120,7 @@ def create_proposal(file, buffer, percentage, project):
     total_cost = round( total_cost * (percentage + 1), 2)
 
     #get the signature font file
-    url = "https://github.com/jjemba83-lgtm/proposal_generator/blob/71695628cb949e01ad3040640c2ebdb31841bf7a/AlexBrush-Regular.ttf"
+    url = "https://github.com/jjemba83-lgtm/proposal_generator/raw/refs/heads/main/AlexBrush-Regular.ttf"
     r = requests.get(url)
     ttf_buffer = io.BytesIO(r.content)
     with open("AlexBrush-Regular.ttf", "wb") as f:
