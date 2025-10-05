@@ -24,6 +24,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 from datetime import datetime
 import streamlit as st
+import requests
 load_dotenv()
 
 
