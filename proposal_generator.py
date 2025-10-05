@@ -25,6 +25,7 @@ from reportlab.pdfbase import pdfmetrics
 from datetime import datetime
 import streamlit as st
 import requests
+from typing import Optional
 load_dotenv()
 
 
