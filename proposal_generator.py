@@ -33,9 +33,9 @@ load_dotenv()
 
 class SOW_summary(BaseModel): 
     #subject : Optional[str] = Field(default="none") 
-    subject: str
-    tasks : str 
-    total_cost : float
+    subject: Optional[str] = Field(default="None") 
+    tasks : Optional[str] = Field(default="None") 
+    total_cost : Optional[float] = Field(default="None") 
 
 
 # In[5]:
@@ -145,7 +145,7 @@ def create_proposal(file, buffer, percentage, project):
     signature_style = ParagraphStyle(
         'SignatureStyle',
         fontName='AlexBrush-Regular',
-        fontSize=12,
+        fontSize=16,
         leading=34,
     )
 
@@ -211,7 +211,10 @@ def create_proposal(file, buffer, percentage, project):
     story.append(Paragraph("This quote does not include any additional charges for taxes, fees, or permits.<br/>Industrial Electric & Testing Co. appreciates the opportunity to serve you. If you have any question concerning this quotation, please feel free to call me at (918) 592-6560.", styleN))   
     story.append(Spacer(1, 0.5 * inch))
     story.append(Paragraph("Sincerely", styleN))
+    story.append(Spacer(1, 0.5 * inch))
     story.append(Paragraph("John M. Prakash", signature_style))
+    story.append(Spacer(1, 0.5 * inch))
+    story.append(Paragraph("Senior Electrical Engineer<br/>Cell # 918-671-9687<br/>Email: john.prakash@ietok.com", styleN))
     doc.build(story)
     return doc
 
