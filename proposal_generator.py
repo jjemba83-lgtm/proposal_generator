@@ -20,6 +20,8 @@ from reportlab.platypus import BaseDocTemplate, Frame, PageTemplate, Paragraph, 
 from reportlab.lib.units import inch, cm
 from reportlab.lib.enums import TA_RIGHT
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase import pdfmetrics
 from datetime import datetime
 import streamlit as st
 load_dotenv()
@@ -50,7 +52,7 @@ def extract_images_from_pdf(uploaded_file):
                 image_bytes = base_image["image"]
                 image_ext = base_image["ext"]
                 # Convert to PIL Image object
-                img = Image.open(io.BytesIO(image_bytes))
+                img = Image.open(io.BytesIO(image_bytes))   #i don't understand this part of the code...
                 #enhance the image
                 enhancer = ImageEnhance.Contrast(img)
                 high_contrast_img = enhancer.enhance(2)
@@ -115,6 +117,9 @@ def create_proposal(file, buffer, percentage, project):
     total_cost = fields[2]
     mark_up = 1.07
     total_cost = round( total_cost * (percentage + 1), 2)
+
+    #get the signature font file
+    
 
     styles = getSampleStyleSheet()
     styleN = styles['Normal']
