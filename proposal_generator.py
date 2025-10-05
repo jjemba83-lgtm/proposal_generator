@@ -119,7 +119,12 @@ def create_proposal(file, buffer, percentage, project):
     total_cost = round( total_cost * (percentage + 1), 2)
 
     #get the signature font file
-    
+    url = "https://github.com/jjemba83-lgtm/proposal_generator/blob/71695628cb949e01ad3040640c2ebdb31841bf7a/AlexBrush-Regular.ttf"
+    r = requests.get(url)
+    ttf_buffer = io.BytesIO(response.content)
+    with open("AlexBrush-Regular.ttf", "wb") as f:
+        f.write(r.content)
+    pdfmetrics.registerFont(TTFont("AlexBrush-Regular", ttf_buffer))
 
     styles = getSampleStyleSheet()
     styleN = styles['Normal']
@@ -135,6 +140,12 @@ def create_proposal(file, buffer, percentage, project):
         fontSize=14,  # Specify the font size here
         leading=50,   # Adjust leading for large fonts
         alignment=1   # Center alignment (0=left, 1=center, 2=right)
+    )
+    signature_style = ParagraphStyle(
+        'SignatureStyle',
+        fontName='AlexBrush-Regular',
+        fontSize=12,
+        leading=34,
     )
 
     def letterhead(canvas, doc):
@@ -199,6 +210,7 @@ def create_proposal(file, buffer, percentage, project):
     story.append(Paragraph("This quote does not include any additional charges for taxes, fees, or permits.<br/>Industrial Electric & Testing Co. appreciates the opportunity to serve you. If you have any question concerning this quotation, please feel free to call me at (918) 592-6560.", styleN))   
     story.append(Spacer(1, 0.5 * inch))
     story.append(Paragraph("Sincerely", styleN))
+    story.append(Paragraph("John M. Prakash, signature_style))
     doc.build(story)
     return doc
 
