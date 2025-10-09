@@ -77,7 +77,7 @@ def ocr_images_with_easyocr(image_list):
 
 
 
-def create_proposal(file, buffer, percentage, project):
+def create_proposal(file, buffer, percentage, project, addressee):
 
     # Extract images
     images = extract_images_from_pdf(file)
@@ -196,7 +196,8 @@ def create_proposal(file, buffer, percentage, project):
     story.append(Paragraph(f"Date: {current_date}", styleN))
     story.append(Paragraph(f"Quotation #: <u>{pn}</u>", right_aligned_style))
     story.append(Spacer(1, 0.1 * inch))
-    story.append(Paragraph(f"{recipient_name}<br/>{recipient_org}<br/>{recipient_address}<br/>{recipient_email}", styleN))
+    addressee = addressee.replace('|','<br/>'>)
+    story.append(Paragraph(f"{addressee}", styleN))
     story.append(Spacer(1, 0.1 * inch))
     story.append(Paragraph(f"RE: {subject}", styleN))
     story.append(Spacer(1, 0.1 * inch))
@@ -237,6 +238,13 @@ def create_proposal(file, buffer, percentage, project):
 def main():
     st.title("Proposal Generator")
     project_number = st.text_input("Enter project number", value = "9009-")
+    recipients = [
+        'Susan Gustafson |Lumen Vyrex Operations |100 S. Cincinnati Ave, Suite 1200 |Tulsa OK',
+        'John Prakash |Industrial Electric & Testing |P.O. Box 2816 |Tulsa, OK 74101'
+    ]
+
+    # Create the dropdown menu
+    recipient = st.selectbox("Select recipient:", recipients)
     markup = st.number_input("Insert a markup:", value = 0.0)
     uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
     #if uploaded_file is not None:
@@ -246,7 +254,7 @@ def main():
         # Your PDF generation code
         pdf_buffer = BytesIO()
         #doc = SimpleDocTemplate(pdf_buffer)
-        result = create_proposal(uploaded_file, pdf_buffer, markup, project_number)  # your data for PDF
+        result = create_proposal(uploaded_file, pdf_buffer, markup, project_number, recipient)  # your data for PDF
         #doc.build(result)
         pdf_buffer.seek(0)
         #st.pdf(pdf_buffer) #Not workign on the cloud for some reason
