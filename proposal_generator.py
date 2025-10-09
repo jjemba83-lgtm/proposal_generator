@@ -151,21 +151,31 @@ def create_proposal(file, buffer, percentage, project):
     )
 
     def letterhead(canvas, doc):
-        scale = .9
-        logo_size = 80
+        scale = 1.79
+        logo_size = 250
         canvas.saveState()
-        # Draw logo
+        
+        # Calculate center position for logo
+        logo_width = scale * logo_size
+        logo_x = (doc.width - logo_width) / 2 + 72 # Center horizontally
+        logo_y = doc.height + doc.topMargin - logo_size/2
+        
+        # Draw centered logo
         canvas.drawImage(
-            'https://github.com/jjemba83-lgtm/proposal_generator/blob/main/iet_logo_only.JPG?raw=true',
-            72, doc.height + doc.topMargin - 60, width = scale * logo_size, height= logo_size
+            'https://github.com/jjemba83-lgtm/proposal_generator/blob/main/new_iet_logo.jpg?raw=true', 
+            logo_x, 
+            logo_y, 
+            width=logo_width, 
+            height=logo_size
         )
-    
-        # Organization Name and Address
-        canvas.setFont("Helvetica-Bold", 14)
-        canvas.drawString(160, doc.height + doc.topMargin - 15, "Industrial Electric & Testing")
+        
+        # Address, Phone, and Website in single line (centered)
         canvas.setFont("Helvetica", 10)
-        canvas.drawString(160, doc.height + doc.topMargin - 30, "P.O. Box 2816, Tulsa, OK 74101")
-        canvas.drawString(160, doc.height + doc.topMargin - 45, "Phone: (918) 592-6560 | www.ietOK.com")
+        contact_info = "P.O. Box 2816, Tulsa, OK 74101 | Phone: (918) 592-6560 | www.ietok.com"
+        contact_info_width = canvas.stringWidth(contact_info, "Helvetica", 10)
+        contact_info_x = (doc.width) / 2 + 72
+        canvas.drawCentredString(contact_info_x, doc.height + doc.topMargin - 60, contact_info)
+        
         canvas.restoreState()
 
     doc = BaseDocTemplate(buffer, pagesize=letter)
