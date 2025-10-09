@@ -196,7 +196,7 @@ def create_proposal(file, buffer, percentage, project, addressee):
     story.append(Paragraph(f"Date: {current_date}", styleN))
     story.append(Paragraph(f"Quotation #: <u>{pn}</u>", right_aligned_style))
     story.append(Spacer(1, 0.1 * inch))
-    addressee = addressee.replace('|','<br/>'>)
+    addressee = addressee.replace('|','<br/>')
     story.append(Paragraph(f"{addressee}", styleN))
     story.append(Spacer(1, 0.1 * inch))
     story.append(Paragraph(f"RE: {subject}", styleN))
